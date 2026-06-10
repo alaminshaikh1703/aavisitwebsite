@@ -27,21 +27,21 @@ export function Hero() {
               <span className="relative inline-block overflow-hidden rounded-full p-[1px]">
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                 <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-4 py-1.5 text-sm font-medium text-foreground backdrop-blur-3xl">
-                  ✨ Global Enterprise Solutions
+                  ✨ Premier Digital Growth Agency
                 </div>
               </span>
             </div>
             
             <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl mb-6">
-              Build Software.<br />
-              Scale Business.<br />
+              Drive Growth.<br />
+              Dominate Search.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
-                Accelerate Growth.
+                Accelerate Business.
               </span>
             </h1>
             
             <p className="mt-4 text-lg leading-8 text-muted-foreground sm:text-xl">
-              Aavis IT & Care helps businesses worldwide with custom software development, CRM systems, POS solutions, modern websites, SEO, and digital growth strategies.
+              Aavis IT & Care helps global enterprises scale with data-driven Digital Marketing, SEO mastery, high-conversion Website Design, and custom Software Solutions.
             </p>
             
             <div className="mt-10 flex items-center gap-x-6">

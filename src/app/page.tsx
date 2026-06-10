@@ -18,10 +18,10 @@ export default async function Home() {
       <ClientLogos />
       <ServicesPreview />
       <IndustriesWeServe />
-      <SoftwareShowcase products={products} />
       <WhyChooseUs />
       <Stats />
       <DevelopmentProcess />
+      <SoftwareShowcase products={products} />
       {/* Testimonials, FAQ placeholders can be added below Process if needed later */}
       <CTA />
     </>

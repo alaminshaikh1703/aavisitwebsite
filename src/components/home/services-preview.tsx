@@ -5,12 +5,12 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 
 const services = [
-  { name: "Custom Software", icon: Code, href: "/services/custom-software", description: "Enterprise-grade applications" },
-  { name: "CRM Solutions", icon: Users, href: "/services/crm", description: "Automate sales & support" },
-  { name: "POS Systems", icon: CreditCard, href: "/services/pos", description: "Cloud-native retail tech" },
+  { name: "Digital Marketing", icon: Megaphone, href: "/services/marketing", description: "Data-driven acquisition" },
   { name: "Web Development", icon: Globe, href: "/services/web", description: "Premium corporate websites" },
   { name: "Global SEO", icon: TrendingUp, href: "/services/seo", description: "Dominate search rankings" },
-  { name: "Digital Marketing", icon: Megaphone, href: "/services/marketing", description: "Data-driven acquisition" },
+  { name: "Social Media Marketing", icon: Users, href: "/services/smm", description: "Brand visibility & engagement" },
+  { name: "Custom Software", icon: Code, href: "/services/custom-software", description: "Enterprise-grade applications" },
+  { name: "POS & CRM Systems", icon: CreditCard, href: "/services/pos-crm", description: "Cloud-native business tech" },
 ]
 
 export function ServicesPreview() {
