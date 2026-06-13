@@ -59,7 +59,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${sora.variable} ${inter.variable} h-full antialiased dark scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${sora.variable} ${inter.variable} h-full antialiased scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"
@@ -71,7 +71,7 @@ export default function RootLayout({
         <div className="fixed inset-0 -z-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background"></div>
         <div className="fixed top-0 z-[-40] h-screen w-screen bg-[url('/noise.png')] opacity-[0.015] mix-blend-overlay pointer-events-none"></div>
 
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Header />
           <main className="flex-1 mt-16">{children}</main>
           <Footer />
