@@ -42,7 +42,7 @@ export function FAQSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Accordion className="w-full">
+          <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-border">
                 <AccordionTrigger className="text-left text-lg font-bold text-foreground hover:text-primary transition-colors py-6">
