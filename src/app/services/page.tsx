@@ -10,8 +10,6 @@ import { Testimonials } from "@/components/services/testimonials"
 import { FAQSection } from "@/components/services/faq-section"
 import { ServicesCTA } from "@/components/services/services-cta"
 
-import { fetchGraphQL } from "@/lib/graphql"
-import { SERVICES_QUERY } from "@/lib/queries"
 
 export const metadata: Metadata = {
   title: "Premium Digital Services | Aavis IT & Care",
@@ -19,25 +17,15 @@ export const metadata: Metadata = {
     "Explore our premium enterprise services including digital marketing, custom software development, SEO, and web design.",
 }
 
-export default async function ServicesPage() {
-  const data = await fetchGraphQL(SERVICES_QUERY)
-
-  const services = data?.services?.nodes || []
-
+export default function ServicesPage() {
   return (
     <>
       <ServicesHero />
-
-      <ServiceShowcase services={services} />
-
+      <ServiceShowcase />
       <ResultsSection />
-
       <PortfolioPreview />
-
       <Testimonials />
-
       <FAQSection />
-
       <ServicesCTA />
     </>
   )

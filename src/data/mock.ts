@@ -173,9 +173,9 @@ export const projects: Project[] = [
     industry: "Financial Technology",
     overview: "A completely custom, high-conversion marketing website and user portal for a leading global payment processor.",
     challenge: "Their legacy website was experiencing low conversion rates and poor PageSpeed scores, costing them thousands in ad spend.",
-    solution: "A complete rebuild using Next.js and Headless WordPress, paired with highly optimized Framer Motion animations.",
-    servicesProvided: ["UI/UX Design", "Frontend Development", "Headless CMS Setup"],
-    technologies: ["Next.js", "Tailwind CSS", "WPGraphQL", "Framer Motion"],
+    solution: "A complete rebuild using Next.js and a custom Node.js backend, paired with highly optimized Framer Motion animations.",
+    servicesProvided: ["UI/UX Design", "Frontend Development", "Backend Development"],
+    technologies: ["Next.js", "Tailwind CSS", "Node.js", "Framer Motion"],
     results: [
       { metric: "99", label: "PageSpeed Score" },
       { metric: "+75%", label: "Conversion Rate" },

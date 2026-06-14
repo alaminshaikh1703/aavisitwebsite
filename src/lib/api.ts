@@ -1,9 +1,8 @@
 import { services, projects, posts, testimonials, softwareProducts, type Service, type Project, type BlogPost, type Testimonial, type SoftwareProduct } from "@/data/mock"
 
 /**
- * API fetching layer simulating GraphQL queries to Headless WordPress.
+ * API fetching layer simulating backend queries using local mock data.
  * These functions currently return Promises resolving to mock data.
- * Once WPGraphQL is ready, these can be replaced with real fetch calls using the NEXT_PUBLIC_WORDPRESS_API_URL.
  */
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
