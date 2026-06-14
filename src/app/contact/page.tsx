@@ -87,15 +87,6 @@ export default function ContactPage() {
             </form>
           </div>
         </div>
-        
-        {/* Placeholder for Calendly Integration */}
-        <div className="mt-24 rounded-2xl bg-muted/50 p-8 text-center border border-border">
-          <h3 className="text-2xl font-bold tracking-tight text-foreground">Schedule a Meeting</h3>
-          <p className="mt-4 text-muted-foreground mb-8">Choose a time that works for you using our Calendly integration.</p>
-          <div className="h-96 w-full bg-background rounded-lg border border-border flex items-center justify-center text-muted-foreground">
-            [ Calendly Embed Widget placeholder ]
-          </div>
-        </div>
       </div>
     </div>
   )

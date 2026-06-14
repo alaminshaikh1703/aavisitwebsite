@@ -22,7 +22,6 @@ export default async function Home() {
       <Stats />
       <DevelopmentProcess />
       <SoftwareShowcase products={products} />
-      {/* Testimonials, FAQ placeholders can be added below Process if needed later */}
       <CTA />
     </>
   )

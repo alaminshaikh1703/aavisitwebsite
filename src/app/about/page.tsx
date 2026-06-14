@@ -5,8 +5,6 @@ import { AboutStats } from "@/components/about/about-stats"
 import { AboutServices } from "@/components/about/about-services"
 import { AboutFeatures } from "@/components/about/about-features"
 import { AboutGlobal } from "@/components/about/about-global"
-import { AboutProcess } from "@/components/about/about-process"
-import { AboutCulture } from "@/components/about/about-culture"
 import { AboutTech } from "@/components/about/about-tech"
 import { AboutTestimonials } from "@/components/about/about-testimonials"
 import { AboutCTA } from "@/components/about/about-cta"
@@ -25,8 +23,6 @@ export default function AboutPage() {
       <AboutServices />
       <AboutFeatures />
       <AboutGlobal />
-      
-      <AboutCulture />
       <AboutTech />
       <AboutTestimonials />
       <AboutCTA />

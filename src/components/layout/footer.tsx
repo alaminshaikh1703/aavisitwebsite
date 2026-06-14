@@ -2,20 +2,14 @@ import Link from "next/link"
 
 const footerLinks = {
   services: [
-    { name: "Custom Software", href: "/services/custom-software" },
-    { name: "Digital Transformation", href: "/services/digital-transformation" },
-    { name: "AI Solutions", href: "/services/ai-solutions" },
-    { name: "SaaS Development", href: "/services/saas-development" },
+    { name: "Services Overview", href: "/services" },
+    { name: "Software Products", href: "/software" },
+    { name: "Portfolio", href: "/portfolio" },
   ],
   company: [
     { name: "About Us", href: "/about" },
-    { name: "Careers", href: "/careers" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
-  ],
-  legal: [
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
   ],
   social: [
     { name: "LinkedIn", href: "#" },
@@ -79,17 +73,7 @@ export function Footer() {
               </div>
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-foreground">Legal</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {footerLinks.legal.map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-sm leading-6 text-muted-foreground hover:text-primary transition-colors">
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              <div className="hidden md:block">
               </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-foreground">Newsletter</h3>
