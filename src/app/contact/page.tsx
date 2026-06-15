@@ -28,7 +28,7 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-base font-semibold leading-7 text-foreground">WhatsApp</h3>
                 <p className="mt-2 leading-7 text-muted-foreground">Get instant support and sales inquiries via WhatsApp.</p>
-                <p className="mt-4 text-sm font-semibold text-primary"><a href="#">Chat with us &rarr;</a></p>
+                <p className="mt-4 text-sm font-semibold text-primary"><a href="https://wa.link/o2ncoj">Chat with us &rarr;</a></p>
               </div>
             </div>
             
@@ -39,7 +39,7 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-base font-semibold leading-7 text-foreground">Email</h3>
                 <p className="mt-2 leading-7 text-muted-foreground">Send us an email anytime.</p>
-                <p className="mt-4 text-sm font-semibold text-primary"><a href="mailto:contact@aavis.com">contact@aavis.com</a></p>
+                <p className="mt-4 text-sm font-semibold text-primary"><a href="mailto:hello@it.aavisstudio.com">hello@it.aavisstudio.com</a></p>
               </div>
             </div>
 
@@ -48,8 +48,8 @@ export default function ContactPage() {
                 <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
               </div>
               <div>
-                <h3 className="text-base font-semibold leading-7 text-foreground">Global Offices</h3>
-                <p className="mt-2 leading-7 text-muted-foreground">Silicon Valley, London, Toronto, Sydney, Dubai</p>
+                <h3 className="text-base font-semibold leading-7 text-foreground">Bangladesh Offices</h3>
+                <p className="mt-2 leading-7 text-muted-foreground">27, KDA Avenue,(Beside City Medical College Hospital), Khulna</p>
               </div>
             </div>
           </div>
@@ -60,13 +60,13 @@ export default function ContactPage() {
               <div>
                 <label htmlFor="name" className="block text-sm font-medium leading-6 text-foreground">Name</label>
                 <div className="mt-2">
-                  <Input id="name" name="name" type="text" placeholder="John Doe" />
+                  <Input id="name" name="name" type="text" placeholder="Al Amin Shaikh" />
                 </div>
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-foreground">Email</label>
                 <div className="mt-2">
-                  <Input id="email" name="email" type="email" placeholder="john@example.com" />
+                  <Input id="email" name="email" type="email" placeholder="alamin@example.com" />
                 </div>
               </div>
               <div>
