@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { prisma } from "@/lib/prisma"
 import { SoftwareHero } from "@/components/software/software-hero"
 import { SoftwareTabs } from "@/components/software/software-tabs"
 import { SoftwareGrid } from "@/components/software/software-grid"
@@ -13,14 +14,19 @@ export const metadata: Metadata = {
   description: "Custom business software built for massive scale. CRM, POS, Inventory, and Project Management solutions engineered by Aavis IT & Care.",
 }
 
-export default function SoftwarePage() {
+export default async function SoftwarePage() {
+  const products = await prisma.softwareProduct.findMany({
+    where: { published: true },
+    orderBy: { createdAt: 'desc' }
+  })
+
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       <SoftwareHero />
       <SoftwareTabs />
-      <SoftwareGrid />
+      <SoftwareGrid initialProducts={products} />
       <SoftwareBenefits />
-      <SoftwareShowcase />
+      {/* <SoftwareShowcase /> */}
       <SoftwareIndustries />
       <SoftwareResults />
       <SoftwareCTA />

@@ -30,7 +30,7 @@ export function AboutHero() {
               About Aavis IT & Care
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.1] mb-6">
               Helping Businesses Grow Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00B7FF]">Digital Innovation</span>
             </h1>
 

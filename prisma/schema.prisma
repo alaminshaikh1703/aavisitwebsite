@@ -1,0 +1,209 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  engineType    = "library"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-1.1.x", "rhel-openssl-3.0.x", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SiteSetting {
+  id          String   @id @default("global")
+  
+  // Hero Section
+  heroTitle    String?
+  heroSubtitle String?
+  heroBtnText  String?
+  heroBtnUrl   String?
+  heroBgImage  String?
+  heroImage    String?
+  
+  // Global SEO
+  siteName        String?
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  
+  // Contact Settings
+  googleMapsIframe String? @db.Text
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ClientLogo {
+  id         String   @id @default(uuid())
+  name       String
+  websiteUrl String?
+  logoUrl    String
+  order      Int      @default(0)
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Service {
+  id               String   @id @default(uuid())
+  title            String
+  slug             String   @unique
+  shortDescription String   @db.Text
+  fullDescription  String   @db.Text
+  icon             String?  // Name of the lucide icon
+  featuredImage    String?
+  
+  benefits         Json?    // Array of strings
+  features         Json?    // Array of objects
+  process          Json?    // Array of objects
+  
+  metaTitle        String?
+  metaDescription  String?
+  
+  published        Boolean  @default(true)
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model PortfolioProject {
+  id               String   @id @default(uuid())
+  title            String
+  slug             String   @unique
+  clientName       String?
+  category         String?
+  industry         String?
+  overview         String?  @db.Text
+  challenge        String?  @db.Text
+  solution         String?  @db.Text
+  description      String   @db.Text
+  servicesProvided Json?    // Array of strings
+  technologies     Json?    // Array of strings
+  coverImage       String?
+  challengeImage   String?
+  gallery          Json?    // Array of image URLs
+  results          Json?    // Array of metrics
+  testimonial      Json?    // Nested object
+  
+  metaTitle        String?
+  metaDescription  String?
+  
+  published        Boolean  @default(true)
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model SoftwareProduct {
+  id               String   @id @default(uuid())
+  name             String
+  slug             String   @unique
+  category         String?
+  metric           String?
+  icon             String?
+  image            String?
+  description      String   @db.Text
+  features         Json?    // Array of strings
+  screenshots      Json?
+  pricing          Json?
+  ctaText          String?
+  ctaUrl           String?
+  
+  metaTitle        String?
+  metaDescription  String?
+  
+  published        Boolean  @default(true)
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model BlogPost {
+  id               String   @id @default(uuid())
+  title            String
+  slug             String   @unique
+  content          String   @db.LongText
+  excerpt          String?  @db.Text
+  featuredImage    String?
+  author           String?
+  authorRole       String?
+  authorImage      String?
+  categories       Json?    // Array of strings
+  tags             Json?    // Array of strings
+  readingTime      String?
+  
+  metaTitle        String?
+  metaDescription  String?
+  
+  published        Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model AboutSetting {
+  id               String   @id @default("global")
+  heroTitle        String?
+  heroSubtitle     String?
+  companyStory     String?  @db.LongText
+  mission          String?  @db.Text
+  vision           String?  @db.Text
+  statistics       Json?    // Array of objects {label, value}
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Testimonial {
+  id               String   @id @default(uuid())
+  clientName       String
+  company          String?
+  position         String?
+  image            String?
+  rating           Int      @default(5)
+  review           String   @db.Text
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Faq {
+  id               String   @id @default(uuid())
+  question         String
+  answer           String   @db.Text
+  category         String?
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model TeamMember {
+  id               String   @id @default(uuid())
+  name             String
+  position         String
+  photo            String?
+  bio              String?  @db.Text
+  socialLinks      Json?    // Array or object of links
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Media {
+  id               String   @id @default(uuid())
+  fileName         String
+  url              String
+  type             String
+  size             Int
+  createdAt        DateTime @default(now())
+}

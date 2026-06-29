@@ -16,12 +16,12 @@ const industries = [
 
 export function SoftwareIndustries() {
   return (
-    <section className="py-24 bg-white relative border-b border-slate-100">
+    <section className="py-24 bg-card relative border-b border-slate-100 dark:border-white/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
            <div className="max-w-2xl">
              <h2 className="text-sm font-bold tracking-widest text-primary uppercase mb-3">Industries Served</h2>
-             <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+             <h3 className="text-3xl md:text-4xl font-extrabold text-foreground tracking-tight">
                Domain expertise across sectors.
              </h3>
            </div>
@@ -35,13 +35,13 @@ export function SoftwareIndustries() {
                  whileInView={{ opacity: 1, scale: 1 }}
                  viewport={{ once: true }}
                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                 className="group relative bg-slate-100 border border-slate-200 p-6 rounded-2xl hover:bg-slate-800 transition-colors flex flex-col justify-between h-full min-h-[140px]"
+                 className="group relative bg-slate-100 dark:bg-card/5 border border-slate-200 dark:border-white/10 p-6 rounded-2xl hover:bg-primary/90 transition-colors flex flex-col justify-between h-full min-h-[140px]"
                >
                  <div className="flex justify-between items-start mb-4">
-                    <ind.icon className="w-6 h-6 text-slate-600 group-hover:text-primary transition-colors" />
-                    <ArrowUpRight className="w-4 h-4 text-slate-600 group-hover:text-slate-900 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
+                    <ind.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground opacity-0 group-hover:opacity-100 transition-all -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
                  </div>
-                 <h4 className="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">{ind.name}</h4>
+                 <h4 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{ind.name}</h4>
                </motion.div>
             </Link>
           ))}
@@ -54,7 +54,7 @@ export function SoftwareIndustries() {
                transition={{ duration: 0.4, delay: industries.length * 0.05 }}
                className="group relative bg-gradient-to-br from-primary/20 to-[#00B7FF]/20 border border-primary/30 p-6 rounded-2xl hover:border-primary transition-colors flex flex-col justify-center items-center h-full min-h-[140px] text-center"
              >
-                <h4 className="text-lg font-bold text-slate-900 mb-1">Your Industry</h4>
+                <h4 className="text-lg font-bold text-foreground mb-1">Your Industry</h4>
                 <p className="text-sm text-[#00B7FF]">Request Custom Build</p>
              </motion.div>
           </Link>

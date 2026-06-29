@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 
-const logos = [
+const defaultLogos = [
   { name: "Acme Corp", url: "https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg" },
   { name: "GlobalTech", url: "https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg" },
   { name: "Innovate", url: "https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg" },
@@ -10,27 +10,56 @@ const logos = [
   { name: "Silent yacht", url: "https://silent69yacht.com/wp-content/uploads/2026/02/Untitled_design__47_-removebg-preview-300x300.png" },
 ]
 
-export function ClientLogos() {
+export function ClientLogos({ clients }: { clients?: any[] }) {
+  const displayLogos = clients && clients.length > 0 
+    ? clients.filter(c => c.active).map(c => ({ name: c.name, url: c.logoUrl, link: c.websiteUrl })) 
+    : defaultLogos;
+
+  // Duplicate logos array to create seamless infinite scroll
+  // We need enough duplicates to fill the screen twice
+  const marqueeLogos = [...displayLogos, ...displayLogos, ...displayLogos, ...displayLogos];
+
   return (
-    <section className="py-12 border-y border-border/40 bg-muted/20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 border-y border-border/40 bg-muted/20 overflow-hidden">
+      <div className="w-full">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-8">
           TRUSTED BY INNOVATIVE TEAMS WORLDWIDE
         </p>
-        <div className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-          {logos.map((logo, index) => (
-            <motion.div
-              key={logo.name}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300 dark:invert"
-            >
-              {/* Using img for generic logos for now. In production, Next/Image with proper domains would be better */}
-              <img src={logo.url} alt={logo.name} className="h-8 w-auto mx-auto" />
-            </motion.div>
-          ))}
+        
+        {/* Marquee Container */}
+        <div className="relative flex w-full overflow-hidden">
+          {/* Gradient Fades for edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-muted/20 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-muted/20 to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling Content */}
+          <motion.div
+            className="flex flex-nowrap items-center gap-16 pr-16 w-max"
+            animate={{
+              x: [0, `-${50}%`],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: displayLogos.length * 10, // Slower speed: 10 seconds per logo length
+                ease: "linear",
+              },
+            }}
+          >
+            {marqueeLogos.map((logo, index) => (
+              <motion.div
+                key={`${logo.name}-${index}`}
+                whileHover={{ 
+                  y: [-5, 5, -5],
+                  transition: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                }}
+                className="flex justify-center items-center h-20 w-[150px] flex-shrink-0 transition-all duration-300 cursor-pointer"
+              >
+                <img src={logo.url} alt={logo.name} className="max-h-16 max-w-full w-auto object-contain" />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

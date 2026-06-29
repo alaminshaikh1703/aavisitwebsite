@@ -12,7 +12,7 @@ const stats = [
 
 export function SoftwareResults() {
   return (
-    <section className="py-24 bg-white relative border-b border-slate-100 overflow-hidden">
+    <section className="py-24 bg-card relative border-b border-slate-100 dark:border-white/5 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -80,12 +80,12 @@ function CounterCard({ stat, index }: { stat: typeof stats[0], index: number }) 
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="flex flex-col items-center justify-center min-w-[200px]"
     >
-      <div className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-4 tabular-nums tracking-tighter">
-        <span className="text-slate-900/50">{stat.prefix}</span>
+      <div className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground mb-4 tabular-nums tracking-tighter">
+        <span className="text-foreground/50">{stat.prefix}</span>
         {displayCount}
         <span className="text-primary">{stat.suffix}</span>
       </div>
-      <div className="text-sm font-bold text-slate-600 uppercase tracking-widest text-center">
+      <div className="text-sm font-bold text-muted-foreground uppercase tracking-widest text-center">
         {stat.label}
       </div>
     </motion.div>

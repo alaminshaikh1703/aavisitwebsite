@@ -2,13 +2,18 @@ import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Mail, Phone, MapPin, MessageCircle } from "lucide-react"
+import { prisma } from "@/lib/prisma"
 
 export const metadata: Metadata = {
   title: "Contact Us | Aavis IT & Care",
   description: "Get in touch with Aavis IT & Care. Schedule a consultation, chat on WhatsApp, or send us an inquiry.",
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const settings = await prisma.siteSetting.findUnique({
+    where: { id: "global" }
+  })
+
   return (
     <div className="bg-background py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,9 +52,18 @@ export default function ContactPage() {
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                 <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
               </div>
-              <div>
+              <div className="w-full">
                 <h3 className="text-base font-semibold leading-7 text-foreground">Bangladesh Offices</h3>
-                <p className="mt-2 leading-7 text-muted-foreground">27, KDA Avenue,(Beside City Medical College Hospital), Khulna</p>
+                <p className="mt-2 leading-7 text-muted-foreground mb-6">27, KDA Avenue,(Beside City Medical College Hospital), Khulna</p>
+                
+                {settings?.googleMapsIframe && (
+                  <div className="w-full mt-4 rounded-xl overflow-hidden border border-border shadow-md group relative h-[250px] sm:h-[300px]">
+                    <div 
+                      className="absolute inset-0 [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-0 grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+                      dangerouslySetInnerHTML={{ __html: settings.googleMapsIframe }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

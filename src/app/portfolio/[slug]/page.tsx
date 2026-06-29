@@ -1,34 +1,47 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { getProjectBySlug, getProjects } from "@/lib/api"
+import { prisma } from "@/lib/prisma"
 import { ArrowLeft, ExternalLink, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 import { ServicesCTA } from "@/components/services/services-cta"
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params
-  const project = await getProjectBySlug(resolvedParams.slug)
+  const project = await prisma.portfolioProject.findUnique({
+    where: { slug: resolvedParams.slug }
+  })
   if (!project) return { title: "Project Not Found | Aavis IT & Care" }
 
   return {
-    title: `${project.title} - Case Study | Aavis IT & Care`,
-    description: project.overview,
+    title: project.metaTitle || `${project.title} - Case Study | Aavis IT & Care`,
+    description: project.metaDescription || project.overview || project.description,
   }
-}
-
-export async function generateStaticParams() {
-  const projects = await getProjects()
-  return projects.map((p) => ({
-    slug: p.slug,
-  }))
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params
-  const project = await getProjectBySlug(resolvedParams.slug)
+  const dbProject = await prisma.portfolioProject.findUnique({
+    where: { slug: resolvedParams.slug }
+  })
 
-  if (!project) {
+  if (!dbProject) {
     notFound()
+  }
+
+  // Format to match exactly what the premium UI expects
+  const project = {
+    title: dbProject.title,
+    category: dbProject.category || "Uncategorized",
+    industry: dbProject.industry || "General",
+    overview: dbProject.overview || dbProject.description,
+    client: dbProject.clientName || "Confidential",
+    servicesProvided: Array.isArray(dbProject.servicesProvided) ? dbProject.servicesProvided as string[] : [],
+    image: dbProject.coverImage || "/images/placeholder.jpg",
+    results: Array.isArray(dbProject.results) ? dbProject.results as any[] : [],
+    technologies: Array.isArray(dbProject.technologies) ? dbProject.technologies as string[] : [],
+    challenge: dbProject.challenge || "No challenge provided.",
+    solution: dbProject.solution || "No solution provided.",
+    screenshots: Array.isArray(dbProject.gallery) ? dbProject.gallery as string[] : [],
   }
 
   return (
@@ -131,7 +144,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                  {/* Secondary Visual Placeholder */}
                  <div className="aspect-video w-full rounded-2xl bg-muted border border-border mb-12 flex items-center justify-center relative overflow-hidden">
                     <img 
-                       src={project.screenshots[0] || project.image} 
+                       src={dbProject.challengeImage || project.screenshots[0] || project.image} 
                        alt="Project details" 
                        className="w-full h-full object-cover"
                     />

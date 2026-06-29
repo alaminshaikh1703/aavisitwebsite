@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
 interface SoftwareShowcaseProps {
-  products: SoftwareProduct[]
+  products: any[]
 }
 
 export function SoftwareShowcase({ products }: SoftwareShowcaseProps) {
@@ -35,23 +35,23 @@ export function SoftwareShowcase({ products }: SoftwareShowcaseProps) {
           </p>
         </div>
 
-        <Tabs defaultValue={products[0].category} className="w-full">
+        <Tabs defaultValue={products[0].slug} className="w-full">
           <div className="flex justify-center mb-16">
             <TabsList className="bg-white/[0.02] backdrop-blur-md border border-white/10 p-1 rounded-xl shadow-lg">
               {products.map((product) => (
                 <TabsTrigger 
-                  key={product.category} 
-                  value={product.category}
+                  key={product.slug} 
+                  value={product.slug}
                   className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-[0_0_15px_rgba(61,0,255,0.5)] px-6 py-2.5 rounded-lg transition-all"
                 >
-                  {product.category}
+                  {product.category || product.name}
                 </TabsTrigger>
               ))}
             </TabsList>
           </div>
 
           {products.map((product) => (
-            <TabsContent key={product.category} value={product.category}>
+            <TabsContent key={product.slug} value={product.slug}>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -60,13 +60,13 @@ export function SoftwareShowcase({ products }: SoftwareShowcaseProps) {
               >
                 {/* Product Info */}
                 <div>
-                  <h3 className="text-4xl font-bold text-foreground mb-4 tracking-tight">{product.title}</h3>
+                  <h3 className="text-4xl font-bold text-foreground mb-4 tracking-tight">{product.name || product.title}</h3>
                   <p className="text-lg text-muted-foreground mb-8 leading-relaxed">{product.description}</p>
                   
                   <div className="mb-10 p-6 rounded-2xl bg-white/[0.02] border border-white/5 shadow-inner">
                     <h4 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4">Key Features</h4>
                     <ul className="space-y-4">
-                      {product.features.map((feature, idx) => (
+                      {((product.features as string[]) || []).map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-4 text-muted-foreground">
                           <CheckCircle2 className="h-5 w-5 text-primary shrink-0 drop-shadow-[0_0_5px_rgba(61,0,255,0.5)]" />
                           <span className="font-medium text-foreground/80">{feature}</span>
@@ -97,10 +97,10 @@ export function SoftwareShowcase({ products }: SoftwareShowcaseProps) {
                       <div className="h-full w-full rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm flex flex-col items-center justify-center relative z-10 shadow-lg">
                         <div className="h-16 w-16 mb-4 rounded-2xl bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center border border-white/10 shadow-inner">
                           <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                            {product.category.charAt(0)}
+                            {(product.category || product.name || "S").charAt(0)}
                           </span>
                         </div>
-                        <span className="text-foreground font-mono text-sm uppercase tracking-widest">{product.category} Interface</span>
+                        <span className="text-foreground font-mono text-sm uppercase tracking-widest">{product.category || product.name} Interface</span>
                         <p className="text-muted-foreground/50 text-xs mt-2">Interactive Preview Pending</p>
                       </div>
                     </div>

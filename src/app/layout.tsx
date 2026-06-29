@@ -66,7 +66,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground relative selection:bg-primary/30">
+      <body suppressHydrationWarning className="min-h-full flex flex-col font-sans bg-background text-foreground relative selection:bg-primary/30">
         {/* Global Premium Ambient Background */}
         <div className="fixed inset-0 -z-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background"></div>
         <div className="fixed top-0 z-[-40] h-screen w-screen bg-[url('/noise.png')] opacity-[0.015] mix-blend-overlay pointer-events-none"></div>
