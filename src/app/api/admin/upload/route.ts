@@ -19,18 +19,41 @@ export async function POST(request: Request) {
     const originalName = file.name.replace(/\s+/g, '-').toLowerCase()
     const fileName = `${uniqueId}-${originalName}`
     
-    const uploadDir = join(process.cwd(), "public", "uploads")
+    let fileUrl = ""
     
-    try {
-      await mkdir(uploadDir, { recursive: true })
-    } catch (err) {
-      // directory might already exist
-    }
+    // Check if we have an ImgBB API Key (For Vercel/Cloud deployment)
+    const imgbbKey = process.env.IMGBB_API_KEY;
+    
+    if (imgbbKey) {
+      // Upload to ImgBB
+      const imgbbFormData = new FormData();
+      imgbbFormData.append("image", new Blob([buffer]));
+      
+      const imgbbRes = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, {
+        method: 'POST',
+        body: imgbbFormData
+      });
+      
+      const imgbbData = await imgbbRes.json();
+      if (imgbbData.success) {
+        fileUrl = imgbbData.data.url;
+      } else {
+        throw new Error("ImgBB upload failed");
+      }
+    } else {
+      // Local filesystem fallback (For Local Dev)
+      const uploadDir = join(process.cwd(), "public", "uploads")
+      
+      try {
+        await mkdir(uploadDir, { recursive: true })
+      } catch (err) {
+        // directory might already exist
+      }
 
-    const path = join(uploadDir, fileName)
-    await writeFile(path, buffer)
-    
-    const fileUrl = `/uploads/${fileName}`
+      const path = join(uploadDir, fileName)
+      await writeFile(path, buffer)
+      fileUrl = `/uploads/${fileName}`
+    }
 
     const media = await prisma.media.create({
       data: {
