@@ -10,15 +10,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
-  experimental: {
-    // Prevent Next.js from spawning too many processes on shared hosting
-    workerThreads: false,
-    cpus: 1,
-    memoryBasedWorkersCount: true
-  },
-  // Ensure Next.js doesn't cache too much in memory
-  cacheHandler: process.env.NODE_ENV === 'production' ? undefined : undefined,
+  // Removed output: "standalone" because Vercel automatically handles serverless deployments
 };
 
 export default nextConfig;
