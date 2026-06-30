@@ -5,7 +5,7 @@ import { verifyAuth } from "./lib/auth"
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
   const isProtectedRoute = path.startsWith("/admin") && path !== "/admin/login"
-  const isApiAdminRoute = path.startsWith("/api/admin") && path !== "/api/admin/login"
+  const isApiAdminRoute = path.startsWith("/api/admin") && path !== "/api/admin/login" && path !== "/api/admin/setup"
 
   if (isProtectedRoute || isApiAdminRoute) {
     const token = request.cookies.get("admin_session")?.value
